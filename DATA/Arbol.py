@@ -51,7 +51,7 @@ class Arbol:
                     NODO.DER = Nodo()
                     NODO.DER.data = x
                     NODO.DER.posx = NODO.posx + newPosX
-                    NODO.DER.posy = NODO.posy + 30
+                    NODO.DER.posy = NODO.posy + 50
                     self.numeroDeNodos = 1 + self.numeroDeNodos
                 else:
                     # Recalculo la pos
@@ -64,7 +64,7 @@ class Arbol:
                     NODO.IZQ = Nodo()
                     NODO.IZQ.data = x
                     NODO.IZQ.posx = NODO.posx - newPosX
-                    NODO.IZQ.posy = NODO.posy + 30
+                    NODO.IZQ.posy = NODO.posy + 50
                     self.numeroDeNodos = 1 + self.numeroDeNodos
                 else:
                     # Hay que recalcular posx

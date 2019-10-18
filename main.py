@@ -80,7 +80,13 @@ class Software:
                     # Pinto esa wea
                     self.telaArbol.create_oval(i[0], i[1], i[0]+30, i[1]+30, tag="bolita")
                     # Pinto El numero
+                    self.telaArbol.create_text(i[0]+14, i[1]+14, text=str(i[2]))
+                    # Se pinta el palito
+
+                    # Para futuras generaciones...
+                    # Como saber quien es el padre si esto acepta repetidos?
                     
+
 
                     # Se agrega a la lista para no volver a pintarse
                     self.nodosPintados.append(i)
