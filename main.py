@@ -29,6 +29,17 @@ class Software:
         self.telaArbol = Canvas(self.pantalla, width=500, height=460, bg="white")
 
         """
+        Variables
+        """
+        # Controlador de pintado se encarga de pintar solo si hay cambios en el arbol
+        self.controladorPintado = False 
+        # Controla que nodos Fueron pintados
+        self.nodosPintados = []
+        """
+        Variables
+        """
+
+        """
         Nota: Esta es la controladora.
         Se encarga de realizar todas las operaciones sobre el arbol
         """
@@ -54,8 +65,28 @@ class Software:
         # Procedo a pintar la tela arbol
         self.telaArbol.place(x=210, y=10)
 
+        # Se lanza el refrescador de la pantalla
+        self.update_graficas()
+
         # Lanzo la pantalla
         self.pantalla.mainloop()
+
+    # Esta funcion refresca la pantalla
+    def update_graficas(self):
+        if self.controladorPintado:
+            for i in self.controladora.returnPosNodos():
+                # Si el nodo no ha sido pintado
+                if i not in self.nodosPintados:
+                    # Pinto esa wea
+                    self.telaArbol.create_oval(i[0], i[1], i[0]+30, i[1]+30, tag="bolita")
+                    # Pinto El numero
+                    
+
+                    # Se agrega a la lista para no volver a pintarse
+                    self.nodosPintados.append(i)
+                
+            self.controladorPintado = False
+        self.pantalla.after(30, self.update_graficas)
 
     # Agregar un numero al arbol
     def addNuArbol(self):
@@ -63,6 +94,7 @@ class Software:
             self.controladora.agregarValorAlArbol(int(self.txtInsertValue.get()))
             # Actualizo el numero de nodos
             self.numeroDeNodos()
+            self.controladorPintado = True
         except:
             print("Error Ingresando Nodo")
 

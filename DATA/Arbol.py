@@ -28,15 +28,18 @@ class Arbol:
     def __init__(self):
         self.raiz = Nodo()
         self.numeroDeNodos = 0
+        self.vectorPosNodos = []
 
     # Este metodo agrega un valor al arbol
     def ADD(self, x):
-        self._ADD(self.raiz, x)
+        self._ADD(self.raiz, x, 110)
     # Este metodo es el que en realidad agrega el nodo al arbol
-    def _ADD(self, NODO, x):
+    def _ADD(self, NODO, x, newPosX):
         # Si la raiz esta vacia pues se crea
         if(self.raiz.data == None):
             self.raiz.data = x
+            self.raiz.posx = 220
+            self.raiz.posy = 20
             self.numeroDeNodos = 1
         else:
             """
@@ -47,21 +50,44 @@ class Arbol:
                 if (NODO.DER == None):
                     NODO.DER = Nodo()
                     NODO.DER.data = x
+                    NODO.DER.posx = NODO.posx + newPosX
+                    NODO.DER.posy = NODO.posy + 30
                     self.numeroDeNodos = 1 + self.numeroDeNodos
                 else:
+                    # Recalculo la pos
+                    newPosX = (int)(newPosX / 2)
                     # Ojo: no hay espacio siga buscando
-                    self._ADD(NODO.DER, x)
+                    self._ADD(NODO.DER, x, newPosX)
             else:
                 # Si la izq esta vacia guarde
                 if (NODO.IZQ == None):
                     NODO.IZQ = Nodo()
                     NODO.IZQ.data = x
+                    NODO.IZQ.posx = NODO.posx - newPosX
+                    NODO.IZQ.posy = NODO.posy + 30
                     self.numeroDeNodos = 1 + self.numeroDeNodos
                 else:
+                    # Hay que recalcular posx
+                    newPosX = (int)(newPosX / 2)
                     # Ojo: no hay espacio siga buscando
-                    self._ADD(NODO.IZQ, x)
+                    self._ADD(NODO.IZQ, x, newPosX)
 
-    
+    # Este metodo retorna los Nodos como puntos x,y en el plano
+    def returnXYDeNodos(self):
+        """
+        Se retorna los nodos como puntos en el plano
+        [ [x,y] , [x,y], [x,y] ,  ....  ]
+        """
+        self.vectorPosNodos = []
+        self._returnXYDeNodos(self.raiz)
+        return self.vectorPosNodos
+    # Este metodo es el que busca los puntos x,y,valor
+    def _returnXYDeNodos(self, NODO):
+        if(NODO!=None):
+            self.vectorPosNodos.append([NODO.posx, NODO.posy, NODO.data])
+            self._returnXYDeNodos(NODO.IZQ)
+            self._returnXYDeNodos(NODO.DER)
+
 
 
     # Este metodo es solo para pruebas

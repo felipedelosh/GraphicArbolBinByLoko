@@ -22,3 +22,7 @@ class Controladora:
     # Este metodo me retorna cuantos nodos tiene el arbol
     def numeroNodos(self):
         return self.arbol.numeroDeNodos
+
+    # Este metodo retorna todos los nodos como puntos en x, y, valor
+    def returnPosNodos(self):
+        return self.arbol.returnXYDeNodos()
