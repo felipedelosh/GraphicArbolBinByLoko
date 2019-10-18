@@ -1,0 +1,9 @@
+a los 18 dias de oct de 2019
+
+
+Me dispongo a crear un arbol binario grafico, en python.
+
+DATA: Se encarga de guardar todo lo referente a estructuras y datos.
+CONTROLLER: INTERFAZ, se encarga de comunicar a data con la interfaz grafica
+
+ojo: Esta wea funciona desde main.py que es la interfaz grafica que lanza todo.
